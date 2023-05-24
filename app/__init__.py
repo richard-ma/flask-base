@@ -9,3 +9,5 @@ def create_app():
         return "hello world"
 
     return app
+
+# run command: flask --app app:create_app run                                                                                                                              0
