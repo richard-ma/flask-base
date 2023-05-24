@@ -10,4 +10,4 @@ def create_app():
 
     return app
 
-# run command: flask --app app:create_app run                                                                                                                              0
+# run command: flask --app app:create_app run
