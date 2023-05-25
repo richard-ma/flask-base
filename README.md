@@ -11,6 +11,6 @@
 * 创建文件: `/app/templates/.placeholder`
 * 创建目录: `/app/templates/static`
 * 创建文件: `/app/templates/static/.placeholder`
-* 创建目录: `/app/tests`
-* 创建文件: `/app/tests/.placeholder`
+* 创建目录: `/tests`
+* 创建文件: `/tests/.placeholder`
 * .gitignore: 添加`instance`目录
