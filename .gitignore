@@ -161,3 +161,4 @@ cython_debug/
 
 # Flask
 instance/
+config.py
