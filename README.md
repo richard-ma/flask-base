@@ -22,6 +22,17 @@
 * 修改`app/__init__.py`，读取`config.py`中的配置
 * .gitignore: 添加`config.py`
 
+## 记录日志
+* 在`/app/__init__.py`中添加
+    * `RotatingFileHandler`
+    * 设置不同运行级别的`log level`和`log filename`
+
+| run level   | log level | log filename             |
+| :---------- | :-------: | :----------------------- |
+| Production  | Warning   | /instance/production.log |
+| Development | Debug     | /instance/development.log|
+| Testing     | Debug     | /instance/testing.log    |
+
 ## 安装
 * 创建`instance`目录
 * 将`config_sample.py`文件复制到根目录下，并更名为`config.py`，或建立软连接
