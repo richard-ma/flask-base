@@ -17,7 +17,7 @@ def create_app():
     # get flask environment variable
     e = os.environ.get('FLASK_ENV', 'production') # default flask environment is production
 
-    # load configration
+    # set running mode
     if e == 'dev':
         cfg_name = 'config.DevelopmentConfig'
         log_filename = 'development.log'
@@ -42,6 +42,7 @@ def create_app():
         logger.addHandler(rotating_file_handler)
         logger.setLevel(log_level)
 
+    # load configration
     app.logger.debug("Loading Configration: " + cfg_name)
     cfg = import_string(cfg_name)()
     app.logger.debug("Configration loaded: " + str(cfg))
