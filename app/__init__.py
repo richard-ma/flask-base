@@ -38,7 +38,7 @@ def create_app():
         backupCount=10,
     )
     # add handler to logger
-    for logger in (app.logger):
+    for logger in (app.logger, ):
         logger.addHandler(rotating_file_handler)
         logger.setLevel(log_level)
 
