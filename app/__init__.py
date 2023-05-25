@@ -42,7 +42,9 @@ def create_app():
         logger.addHandler(rotating_file_handler)
         logger.setLevel(log_level)
 
+    app.logger.debug("Loading Configration: " + cfg_name)
     cfg = import_string(cfg_name)()
+    app.logger.debug("Configration loaded: " + str(cfg))
     app.config.from_object(cfg)
 
     @app.route("/")
