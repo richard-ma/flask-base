@@ -31,22 +31,28 @@ def create_app():
         log_filename = 'production.log'
         log_level = logging.WARNING
 
+    # load configration
+    cfg = import_string(cfg_name)()
+    app.config.from_object(cfg)
+
     # add logging handler
     rotating_file_handler = RotatingFileHandler(
         os.path.join(app.instance_path, log_filename),
-        maxBytes=20000000,
-        backupCount=10,
+        maxBytes=app.config.get('LOGGING_FILE_MAX_BYTES', 1024*1024),
+        backupCount=app.config.get('LOGGING_FILE_BACKUP_COUNT', 10),
     )
+    # set logging format
+    logging_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s-%(funcName)s'
+    logging_formatter = logging.Formatter(logging_format)
+    rotating_file_handler.setFormatter(logging_formatter)
     # add handler to logger
     for logger in (app.logger, ):
         logger.addHandler(rotating_file_handler)
         logger.setLevel(log_level)
 
-    # load configration
+    # logging configurations
     app.logger.debug("Loading Configration: " + cfg_name)
-    cfg = import_string(cfg_name)()
     app.logger.debug("Configration loaded: " + str(cfg))
-    app.config.from_object(cfg)
 
     @app.route("/")
     def index():
