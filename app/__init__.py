@@ -20,15 +20,12 @@ def create_app():
     # set running mode
     if e == 'dev':
         cfg_name = 'config.DevelopmentConfig'
-        log_filename = 'development.log'
         log_level = logging.DEBUG
     elif e == 'testing':
         cfg_name = 'config.TestingConfig'
-        log_filename = 'testing.log'
         log_level = logging.DEBUG
     else: # production as default
         cfg_name = 'config.ProductionConfig'
-        log_filename = 'production.log'
         log_level = logging.WARNING
 
     # load configration
@@ -36,8 +33,9 @@ def create_app():
     app.config.from_object(cfg)
 
     # add logging handler
+    logging_filename  = app.config.get('LOGGING_FILENAME', e + '.log')
     rotating_file_handler = RotatingFileHandler(
-        os.path.join(app.instance_path, log_filename),
+        os.path.join(app.instance_path, logging_filename),
         maxBytes=app.config.get('LOGGING_FILE_MAX_BYTES', 1024*1024),
         backupCount=app.config.get('LOGGING_FILE_BACKUP_COUNT', 10),
     )

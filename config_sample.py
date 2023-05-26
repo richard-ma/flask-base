@@ -8,10 +8,13 @@ class Config:
 
 class ProductionConfig(Config):
     DATABASE_URI = ''
+    LOGGING_FILENAME = 'production.log'
 
 class DevelopmentConfig(Config):
     DATABASE_URI = ''
+    LOGGING_FILENAME = 'development.log'
 
 class TestingConfig(Config):
-    DATABASE_URI = ''
     TESTING = True
+    DATABASE_URI = ''
+    LOGGING_FILENAME = 'testing.log'
