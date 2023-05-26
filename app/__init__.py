@@ -44,6 +44,7 @@ def create_app():
     logging_formatter = logging.Formatter(logging_format)
     rotating_file_handler.setFormatter(logging_formatter)
     # add handler to logger
+    # TODO if you use flask-sqlalchemy add it's logger to this list
     for logger in (app.logger, ):
         logger.addHandler(rotating_file_handler)
         logger.setLevel(log_level)
